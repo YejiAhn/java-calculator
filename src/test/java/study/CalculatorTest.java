@@ -37,6 +37,4 @@ public class CalculatorTest {
             Calculator.divide(12, 0);
         }).isInstanceOf(ArithmeticException.class);
     }
-
-
 }
