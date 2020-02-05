@@ -2,11 +2,14 @@ package siyoung;
 
 import org.junit.jupiter.api.Test;
 
+import java.io.FileInputStream;
+import java.io.IOException;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 public class StringTest {
     @Test
@@ -66,5 +69,22 @@ public class StringTest {
         StringBuilder sb = new StringBuilder();
         sb.append("우테코는 ").append(number).append("명이다");
         return sb.toString();
+    }
+
+    @Test
+    public void 다양한_예외_처리() {
+        String name = null;
+
+        assertThatThrownBy(()->{
+            name.length(); name.isEmpty();
+        }).isInstanceOf(NullPointerException.class);
+
+        assertThatThrownBy(()->{
+            ExampleClass.transfer("abc");
+        }).isInstanceOf(IllegalArgumentException.class);
+
+        assertThatThrownBy(()->{
+            FileInputStream in = new FileInputStream("hello.txt");
+        }).isInstanceOf(IOException.class);
     }
 }
