@@ -1,5 +1,6 @@
 package siyoung;
 
+import org.assertj.core.internal.bytebuddy.dynamic.Transformer;
 import org.junit.jupiter.api.Test;
 
 import java.io.FileInputStream;
@@ -87,4 +88,12 @@ public class StringTest {
             FileInputStream in = new FileInputStream("hello.txt");
         }).isInstanceOf(IOException.class);
     }
+
+    @Test
+    public void caseTest(){
+        assertThat("FrOdo").startsWith("FrO")
+                .endsWith("do")
+                .isEqualToIgnoringCase("frodo");
+    }
+
 }
